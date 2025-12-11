@@ -8,13 +8,19 @@ function show_cpu() {
     top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1"%"}'
 }
 
+function show_ram() {
+    echo "[RAM] Utilisation :"
+    # on définit total_mem mais on appelle total_memory
+    total_mem=$(free -h | grep Mem | awk '{print $2}')
+    used_mem=$(free -h | grep Mem | awk '{print $3}')
+    echo "Utilisé : $used_mem / $total_memory"
+}
 
 function main() {
     echo "=== Démarrage du Monitoring ==="
-    # Les fonctions seront appelées ici
+    show_ram
     show_cpu
     echo "==============================="
 }
-
 
 main
