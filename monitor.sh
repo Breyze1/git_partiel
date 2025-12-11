@@ -16,11 +16,17 @@ function show_ram() {
     echo "Utilisé : $used_mem / $total_memory"
 }
 
+function show_disk() {
+    echo "[Disque] Espace racine :"
+    df -h / | tail -1 | awk '{print $5 " utilisé"}'
+}
+
+
 function main() {
     echo "=== Démarrage du Monitoring ==="
     show_ram
     show_cpu
+    show_disk
     echo "==============================="
-}
-
+	
 main
