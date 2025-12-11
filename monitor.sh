@@ -10,10 +10,10 @@ function show_cpu() {
 
 function show_ram() {
     echo "[RAM] Utilisation :"
-    # on définit total_mem mais on appelle total_memory
+    # correction : total_mem est utilise a la place de la variable total_memory qui n'existat pas
     total_mem=$(free -h | grep Mem | awk '{print $2}')
     used_mem=$(free -h | grep Mem | awk '{print $3}')
-    echo "Utilisé : $used_mem / $total_memory"
+    echo "Utilisé : $used_mem / $total_mem"
 }
 
 function show_disk() {
